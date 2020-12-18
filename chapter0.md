@@ -29,3 +29,10 @@ C++ object model includes:
 - language component that directly supports OO design.
 - Low level mechanism that
 
+## Types of C++ Object Model Low level Mechanism
+- cfront program-based solutions
+    
+    由cfront实现品采用的方法。cfront是最早的编译器。这里重点是强调平台无关。
+- Platform dependent solutions
+    
+    即平台相关
