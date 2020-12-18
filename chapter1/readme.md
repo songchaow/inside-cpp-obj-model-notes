@@ -1,6 +1,5 @@
 # Chapter 1
-## Whether to encapusulate?
-## 需不需要对象封装
+## Whether to encapusulate? 需不需要对象封装
 - From software engineering view, encapusulation is definitely better.
 - Sometimes, raw C implementation(without encapusulation) is considered better, if programmers want an app up and running quickly.
 
@@ -69,3 +68,12 @@ Use composition instead of inheritance. 使用组合而不是继承。
 - procedural model
 - abstract data type model
 - object-oriented model
+	a collection of related types are encapsulated through an
+abstract base class.
+
+ADT paradigm is distinct from OO paradigm. Mixting them can be faulty.
+
+C++ supports polymorphism in following usages(originally "ways"):
+- implict conversion from derived pointer type to base pointer type.
+- virtual function
+- `dynamic_cast` and `typeid` operators 
