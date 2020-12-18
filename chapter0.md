@@ -15,12 +15,12 @@ A phase of compiler, between type checking and code generation. The simplifier d
     ```
 
 2. Language semantics transformations
->> 将语言语意转换成针对对象模型的操作。转换后的操作仍然是在语言层面。
+    > 将语言语意转换成针对对象模型的操作。转换后的操作仍然是在语言层面。
 
     constructors and destructors. memberwise initialization and memberwise copy.
 
 3. Code and object model transformations (to codes)
->> 转换对象模型本身的操作。即对象模型的底层实现机制。
+    > 转换对象模型本身的操作。即对象模型的底层实现机制。
 
     vitual functions, vitual base class and inheritance, new and delete operators
 
