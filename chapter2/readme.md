@@ -49,9 +49,40 @@ Criterion of **NOT** copy semantics:
 3. the class declares one or more virtual functions.
   Problems arise when initializing a base class obj with a derived class object. The vptr should be set back to the one of the base class.
 4. the class has virtual base classes.
+  
+    我的想法：如果bptr存储的是绝对值，那么每次拷贝，都不是bitwise semantics。如果存储的是虚基类与自己的相对偏移，则有时候可以是bitwise semantics。
+
+    ~~现在悟出了一点：bptr应该存在于虚基类后面的每一个类对象的成员里。~~ bptr应该只有一个，所有后续的类都可以用同样的方式访问。所以应该在最开始的地方。
 
 自己的总结。所以copy行为有三种可能：
 1. class有bitwise copy semantics，直接内存数据复制。
 2. class没有bitwise copy semantics，未定义cp ctor，编译器合成。此时该复制的都会复制。
 3. class没有bitwise copy semantics，有定义cp ctor，此时只会复制ctor里有的成员，编译器**不会补充**。
 
+## 2.3 Program Transformation Semantics
+
+### Explicit Initialization
+Two fold program transformations:
+- Remove each definition's initialization.
+- Add the class copy ctor.
+
+### Argument Initialization
+Two implementation strategies:
+1. Construct a temporary obj at the calling side. And reference to that object in the function body.
+2. Copy construct the obj directly at the argument's place on the activation record on the program stack. (Seems more intuitive)
+### Return Value Initialization
+Two fold transformation:
+1. Add a reference argument of the returning type.
+
+   The actual object of the argument is a temporary object, or the lvalue if the expression is a definition with a initializer.
+
+2. Insert the initialization code of the reference argument.
+
+**The above behaviour can be optimized to prevent copies**.
+
+#### User Level Optimization
+Return a computational ctor, and apply that ctor directly on the reference argument. Instead of creating a local variable and return it, which causes copying.
+
+But adding those ctors merely for efficiency reasons can affect the original class design.
+#### Compiler Level Optimization
+NRV.
