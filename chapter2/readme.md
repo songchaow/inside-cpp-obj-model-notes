@@ -86,3 +86,6 @@ Return a computational ctor, and apply that ctor directly on the reference argum
 But adding those ctors merely for efficiency reasons can affect the original class design.
 #### Compiler Level Optimization
 NRV.
+
+
+## 2.4 Memberwise Initialization List
